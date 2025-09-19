@@ -1,0 +1,133 @@
+<!-- ... existing code ... -->
+                <!-- Bottom Panel: Charts -->
+                <div class="lg:col-span-3 bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-xl font-bold mb-2">Allele Frequency Analytics</h2>
+                    <p class="text-sm text-gray-500 mb-4">Track the frequency of the beneficial allele ('1') in the population's gene pool over time. An increase indicates adaptation.</p>
+                    <div class="h-64">
+                        <canvas id="allele-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// ... existing code ...
+        let simulationInterval;
+        let currentScenario = null;
+        let extinctionCount = 0;
+        let alleleChart;
+
+        // --- Scenario Configuration ---
+        const scenarios = {
+// ... existing code ...
+        // --- Simulation State ---
+        let population = [];
+        let generation = 0;
+        let isRunning = false;
+        let simulationInterval;
+        let currentScenario = null;
+        let extinctionCount = 0;
+        let alleleChart;
+
+        // --- Scenario Configuration ---
+        const scenarios = {
+// ... existing code ...
+        // --- UI & Rendering ---
+        function renderPopulation() {
+            populationGrid.innerHTML = '';
+// ... existing code ...
+            fitnessStat.textContent = `${avgFitness.toFixed(0)}%`;
+        }
+        
+        function setupCharts() {
+            if (alleleChart) alleleChart.destroy();
+
+            const commonOptions = { responsive: true, maintainAspectRatio: false, animation: { duration: 0 }, elements: { point: { radius: 0 } }, plugins: { legend: { display: false } } };
+            
+            alleleChart = new Chart('allele-chart', {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Frequency of Allele "1"',
+                        data: [],
+                        borderColor: 'rgb(34, 197, 94)',
+                        tension: 0.1,
+                        borderWidth: 2,
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        x: { title: { display: true, text: 'Generation' } },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: { display: true, text: 'Frequency (%)' },
+                            ticks: { callback: v => v + '%' }
+                        }
+                    },
+                    plugins: {
+                        ...commonOptions.plugins,
+                        title: {
+                            display: true,
+                            text: 'Beneficial Allele (1) Frequency',
+                            font: { size: 16 }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateCharts() {
+            let beneficialAlleleCount = 0;
+            let totalAlleles = 0;
+
+            if (population.length > 0) {
+                totalAlleles = population.length * currentScenario.config.genomeLength;
+                // Assumes beneficial allele is '1' and deleterious is '0'
+                beneficialAlleleCount = population.reduce((sum, ind) => {
+                    return sum + ind.genome.reduce((alleleSum, allele) => alleleSum + allele, 0);
+                }, 0);
+            }
+            
+            const frequency = totalAlleles > 0 ? (beneficialAlleleCount / totalAlleles) * 100 : 0;
+
+            alleleChart.data.labels.push(generation);
+            alleleChart.data.datasets[0].data.push(frequency);
+            
+            const maxDataPoints = 150;
+            if (alleleChart.data.labels.length > maxDataPoints) {
+                alleleChart.data.labels.shift();
+                alleleChart.data.datasets[0].data.shift();
+            }
+            alleleChart.update();
+        }
+
+        // --- Main Control Flow & Event Handlers ---
+        const startSimulation = () => {
+// ... existing code ...
+        function selectScenario(scenarioKey) {
+            currentScenario = scenarios[scenarioKey];
+            document.getElementById('sim-title').textContent = currentScenario.title;
+            document.getElementById('sim-description').textContent = currentScenario.description;
+            scenarioGoal.textContent = currentScenario.goalText;
+            scenarioSelection.classList.add('hidden');
+            simulationScreen.classList.remove('hidden');
+            setupCharts();
+            resetSimulation();
+        }
+
+        function backToMenu() {
+// ... existing code ...
+            simMessage.textContent = '';
+            simMessage.className = 'mt-3 text-center text-lg font-semibold h-8';
+            extinctionStat.textContent = extinctionCount;
+            initializePopulation();
+            // Clear and reset charts
+            alleleChart.data.labels = [];
+            alleleChart.data.datasets[0].data = [];
+            alleleChart.update();
