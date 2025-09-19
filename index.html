@@ -3,395 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EvoSim: Recombination Master</title>
+    <title>EvoSim: An Evolutionary Infographic</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 45vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FF4E50, #FC913A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #FC913A;
+        }
+        .flow-box {
+            border-color: #F9D423;
+        }
+        .kpi-box {
+             background-color: #FF4E50;
+             color: white;
         }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
     <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-8 md:my-16">
+            <h1 class="text-5xl md:text-7xl font-black gradient-text">EvoSim</h1>
+            <p class="text-xl md:text-2xl font-semibold text-gray-700 mt-2">Master the Forces of Evolution</p>
+            <p class="max-w-3xl mx-auto mt-4 text-gray-600">This is an interactive simulation where you control the rules of natural selection. Explore how genetics and environment shape the destiny of a population, all within a digital laboratory.</p>
+            <div class="mt-8">
+                <a href="simulation.html" class="inline-block bg-gradient-to-r from-[#FF4E50] to-[#FC913A] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300">
+                    Launch the Simulation &rarr;
+                </a>
+            </div>
+        </header>
         
-        <!-- Unified Simulation Screen -->
-        <div id="simulation-screen">
-             <header class="text-center mb-8">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900">EvoSim: Recombination Master</h1>
-                <p class="text-lg text-gray-600 mt-2">Control recombination and environmental pressure to guide your population's evolution.</p>
-            </header>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                 <!-- Left Panel: Stats -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
-                    <!-- Stats Grid -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-4">
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm font-medium text-gray-500">Generation</p>
-                            <p id="generation-stat" class="text-2xl font-bold">0</p>
-                        </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm font-medium text-gray-500">Population</p>
-                            <p id="population-stat" class="text-2xl font-bold">0</p>
-                        </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm font-medium text-gray-500">Avg. Fitness</p>
-                            <p id="fitness-stat" class="text-2xl font-bold">0%</p>
-                        </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm font-medium text-gray-500">Extinctions</p>
-                            <p id="extinction-stat" class="text-2xl font-bold">0</p>
+        <section id="controls" class="my-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Your Evolutionary Toolkit</h2>
+                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">You have two primary levers to pull. Your choices directly influence how the population adapts, thrives, or perishes. This simple flow shows how your input drives the outcome.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-700">PLAYER INPUTS</h3>
+                        <div class="mt-4 space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-lg border-2 flow-box">
+                                <h4 class="font-semibold text-lg text-[#FF4E50]">Recombination Rate</h4>
+                                <p class="text-sm">The "gene shuffling" speed.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg border-2 flow-box">
+                                <h4 class="font-semibold text-lg text-[#FF4E50]">Selection Pressure</h4>
+                                <p class="text-sm">The harshness of the environment.</p>
+                            </div>
                         </div>
                     </div>
-                    <div id="sim-message" class="mt-3 text-center text-lg font-semibold h-8"></div>
-                </div>
-
-                <!-- Right Panel: Controls -->
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h2 class="text-xl font-bold mb-4">Controls</h2>
-                    <div class="space-y-4">
-                        <div class="flex space-x-2">
-                            <button id="start-pause-button" class="w-full flex justify-center items-center bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                                Play
-                            </button>
-                            <button id="reset-button" class="w-full flex justify-center items-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L20.49 10"></path><path d="M20.49 15a9 9 0 0 1-14.85 3.36L3.51 14"></path></svg>
-                                Reset
-                            </button>
-                        </div>
-                        <div>
-                            <label for="recombination-slider" class="block text-sm font-medium text-gray-700">Recombination Rate: <span id="recombination-value">50%</span></label>
-                            <input id="recombination-slider" type="range" min="0" max="1" step="0.01" value="0.5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                        </div>
-                         <div>
-                            <label for="pressure-slider" class="block text-sm font-medium text-gray-700">Selection Pressure: <span id="pressure-value">30%</span></label>
-                            <input id="pressure-slider" type="range" min="0" max="1" step="0.01" value="0.3" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                        </div>
-                        <div>
-                            <label for="speed-slider" class="block text-sm font-medium text-gray-700">Simulation Speed</label>
-                            <input id="speed-slider" type="range" min="1" max="30" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    <div class="flow-arrow transform md:-rotate-0 rotate-90">&rarr;</div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-700">SIMULATION ENGINE</h3>
+                        <div class="mt-4 p-4 bg-gray-50 rounded-lg border-2 flow-box">
+                            <h4 class="font-semibold text-lg text-gray-600">Generational Cycle</h4>
+                            <p class="text-sm">Applies rules of inheritance & survival.</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Bottom Panel: Charts -->
-                <div class="lg:col-span-3 bg-white p-6 rounded-xl shadow-md">
-                    <h2 class="text-xl font-bold mb-2">Population Analytics</h2>
-                    <p class="text-sm text-gray-500 mb-4">Track how your population's key traits change over many generations.</p>
-                    <div class="h-80">
-                         <canvas id="fitness-chart"></canvas>
+                    <div class="flow-arrow transform md:-rotate-0 rotate-90">&rarr;</div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-700">EVOLUTIONARY OUTCOME</h3>
+                        <div class="mt-4 p-4 bg-gray-50 rounded-lg border-2 flow-box">
+                            <h4 class="font-semibold text-lg text-[#FC913A]">Population Data</h4>
+                            <p class="text-sm">Charts fitness & size over time.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="fitness" class="my-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Decoding the Genome</h2>
+                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">In EvoSim, "fitness" is simple. Each organism has a genome of 1s and 0s. Fitness is the percentage of '1's. A higher percentage means a better-adapted individual, with a greater chance to survive and reproduce.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center p-6 bg-green-50 rounded-lg">
+                        <h3 class="text-2xl font-bold text-green-700">High Fitness (90%)</h3>
+                        <p class="font-mono text-xl my-4 p-2 bg-green-200 rounded">1110111101</p>
+                        <p>This organism is well-suited to its environment and is very likely to pass on its genes.</p>
+                    </div>
+                    <div class="text-center p-6 bg-red-50 rounded-lg">
+                        <h3 class="text-2xl font-bold text-red-700">Low Fitness (20%)</h3>
+                        <p class="font-mono text-xl my-4 p-2 bg-red-200 rounded">0100001000</p>
+                        <p>This organism is struggling. It's a prime candidate for being culled by selection pressure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="main-chart" class="my-12">
+             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">The Story of a Population</h2>
+                <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">The main chart tells the epic story of your population's journey. The blue line tracks the average fitness—the population's overall adaptation. The red line shows the population size. A successful run often sees rising fitness and a stable, healthy population.</p>
+                <div class="chart-container">
+                    <canvas id="mainEvolutionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="scenarios" class="my-12">
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-800">Run the Experiments!</h2>
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FF4E50]">1. The Adaptation Challenge</h3>
+                    <p class="mb-4 text-center text-gray-600">Can a population survive a sudden, harsh environment (75% pressure)? This test shows how high recombination (gene shuffling) is crucial for rapid adaptation and survival.</p>
+                    <div class="chart-container h-64 max-h-64">
+                        <canvas id="adaptationChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FC913A]">2. The Cost of Stability</h3>
+                    <p class="mb-4 text-center text-gray-600">What happens in a comfortable environment (10% pressure) with no genetic mixing? Without recombination, fitness stagnates, unable to discover better solutions.</p>
+                    <div class="chart-container h-64 max-h-64">
+                        <canvas id="stabilityChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#F9D423]">3. The Extinction Vortex</h3>
+                    <p class="mb-4 text-center text-gray-600">When a healthy population is suddenly hit with extreme pressure (90%), it can enter a death spiral. This chart shows a rapid collapse in both population and fitness.</p>
+                    <div class="chart-container h-64 max-h-64">
+                        <canvas id="extinctionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cycle" class="my-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">The Generation Cycle</h2>
+                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">Each "generation" in the simulation is a complete loop of life, death, and reproduction. Here is the step-by-step process that repeats continuously.</p>
+                <div class="flex flex-col md:flex-row items-stretch justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flex-1 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center">
+                        <h4 class="font-bold text-lg text-gray-700">1. Reproduction</h4>
+                        <p class="text-sm">Parents are chosen to create offspring, shuffling genes based on the Recombination Rate.</p>
+                    </div>
+                    <div class="flow-arrow self-center transform rotate-90 md:rotate-0">&darr;</div>
+                    <div class="flex-1 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center">
+                        <h4 class="font-bold text-lg text-gray-700">2. New Offspring</h4>
+                        <p class="text-sm">A new generation is born, with a mix of old and new genetic combinations.</p>
+                    </div>
+                    <div class="flow-arrow self-center transform rotate-90 md:rotate-0">&darr;</div>
+                    <div class="flex-1 text-center p-4 bg-red-50 rounded-lg border-2 border-red-300 flex flex-col justify-center">
+                        <h4 class="font-bold text-lg text-red-700">3. Selection</h4>
+                        <p class="text-sm">The environment applies its pressure, culling the least-fit individuals from the new generation.</p>
+                    </div>
+                     <div class="flow-arrow self-center transform rotate-90 md:rotate-0">&darr;</div>
+                    <div class="flex-1 text-center p-4 bg-green-50 rounded-lg border-2 border-green-300 flex flex-col justify-center">
+                        <h4 class="font-bold text-lg text-green-700">4. Survivors</h4>
+                        <p class="text-sm">The remaining individuals form the parent pool for the next generation. The cycle repeats.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <script>
-        // --- DOM Elements ---
-        const simulationScreen = document.getElementById('simulation-screen');
-        const generationStat = document.getElementById('generation-stat');
-        const populationStat = document.getElementById('population-stat');
-        const fitnessStat = document.getElementById('fitness-stat');
-        const extinctionStat = document.getElementById('extinction-stat');
-        const startPauseButton = document.getElementById('start-pause-button');
-        const resetButton = document.getElementById('reset-button');
-        const speedSlider = document.getElementById('speed-slider');
-        const recombinationSlider = document.getElementById('recombination-slider');
-        const recombinationValue = document.getElementById('recombination-value');
-        const pressureSlider = document.getElementById('pressure-slider');
-        const pressureValue = document.getElementById('pressure-value');
-        const simMessage = document.getElementById('sim-message');
-
-        // --- Simulation State ---
-        let population = [];
-        let generation = 0;
-        let isRunning = false;
-        let simulationInterval;
-        let currentScenario = null;
-        let extinctionCount = 0;
-        let fitnessChart;
-
-        // --- Scenario Configuration ---
-        const scenarios = {
-            'default': {
-                name: 'Default Environment',
-                description: 'A standard environment for observing evolutionary dynamics.',
-                params: {
-                    initialPopulation: 50,
-                    maxPopulation: 500, // Increased population size
-                    mutationRate: 0.05,
-                    recombinationRate: 0.5,
-                    environmentalPressure: 0.3,
-                    genomeLength: 50
-                }
-            }
-        };
-
-        // --- Core Simulation Logic ---
-        const createIndividual = (genomeLength) => {
-            let genome = '';
-            for (let i = 0; i < genomeLength; i++) {
-                genome += Math.random() < 0.5 ? '0' : '1';
-            }
-            return { genome, fitness: calculateFitness(genome) };
-        };
-
-        const calculateFitness = (genome) => {
-            const ones = (genome.match(/1/g) || []).length;
-            return ones / genome.length;
-        };
-        
-        const initializePopulation = () => {
-            const params = currentScenario.params;
-            population = [];
-            for (let i = 0; i < params.initialPopulation; i++) {
-                population.push(createIndividual(params.genomeLength));
-            }
-        };
-        
-        const runGeneration = () => {
-            if (population.length <= 1) { // Need at least 2 individuals to reproduce
-                isRunning = false;
-                startPauseButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Play`;
-                simMessage.textContent = "Population went extinct!";
-                simMessage.className = 'mt-3 text-center text-lg font-semibold h-8 text-red-500';
-                extinctionCount++;
-                extinctionStat.textContent = extinctionCount;
-                clearInterval(simulationInterval);
-                return;
-            }
-
-            const params = currentScenario.params;
-            let newPopulation = [];
-
-            // 1. REPRODUCTION: Create a new generation of offspring. The number of offspring is
-            // proportional to the current population size, capped by the environment's max population.
-            const potentialOffspringCount = Math.min(params.maxPopulation, population.length * 2);
-            while (newPopulation.length < potentialOffspringCount && population.length > 1) {
-                const parent1 = population[Math.floor(Math.random() * population.length)];
-                const parent2 = population[Math.floor(Math.random() * population.length)];
-
-                let childGenome;
-                if (Math.random() < params.recombinationRate) {
-                    const crossoverPoint = Math.floor(Math.random() * params.genomeLength);
-                    childGenome = parent1.genome.substring(0, crossoverPoint) + parent2.genome.substring(crossoverPoint);
-                } else {
-                    childGenome = Math.random() < 0.5 ? parent1.genome : parent2.genome;
-                }
-
-                let newGenome = '';
-                for (let i = 0; i < childGenome.length; i++) {
-                    if (Math.random() < params.mutationRate) {
-                        newGenome += childGenome[i] === '1' ? '0' : '1';
-                    } else {
-                        newGenome += childGenome[i];
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
                     }
                 }
-                
-                newPopulation.push({ genome: newGenome, fitness: calculateFitness(newGenome) });
             }
-            
-            // 2. SELECTION: The environment culls the least fit individuals from the new generation.
-            newPopulation.sort((a, b) => b.fitness - a.fitness);
-            const numberToCull = Math.floor(newPopulation.length * params.environmentalPressure);
-            newPopulation.splice(newPopulation.length - numberToCull, numberToCull);
-
-            // 3. SURVIVAL: The survivors become the new population for the next generation.
-            population = newPopulation;
-            generation++;
-            updateStats();
-            updateCharts();
-        }
-
-        // --- UI Update Functions ---
-        const updateStats = () => {
-            generationStat.textContent = generation;
-            populationStat.textContent = population.length;
-            const avgFitness = population.length > 0 ? (population.reduce((sum, ind) => sum + ind.fitness, 0) / population.length) * 100 : 0;
-            fitnessStat.textContent = `${avgFitness.toFixed(0)}%`;
         };
-        
-        const setupCharts = (maxPop) => {
-            if (fitnessChart) fitnessChart.destroy();
 
-            const commonOptions = {
-                responsive: true, maintainAspectRatio: false, animation: { duration: 0 },
-                elements: { point: { radius: 0 } },
-                interaction: { mode: 'index', intersect: false },
-                plugins: { legend: { display: true } },
-                scales: {
-                    x: {
-                        type: 'linear',
-                        title: { display: true, text: 'Generation' }
-                    },
-                    y_fitness: {
-                        type: 'linear', display: true, position: 'left',
-                        beginAtZero: true, max: 100,
-                        title: { display: true, text: 'Avg. Fitness', color: 'rgb(59, 130, 246)' },
-                        ticks: { callback: v => v + '%', color: 'rgb(59, 130, 246)' }
-                    },
-                    y_population: {
-                        type: 'linear', display: true, position: 'right',
-                        beginAtZero: true, suggestedMax: maxPop,
-                        title: { display: true, text: 'Population', color: 'rgb(239, 68, 68)' },
-                        ticks: { color: 'rgb(239, 68, 68)' },
-                        grid: { drawOnChartArea: false },
+        const wrapLabels = (label) => {
+            if (typeof label === 'string' && label.length > 16) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
                     }
-                }
-            };
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        };
 
-            fitnessChart = new Chart('fitness-chart', {
-                type: 'line',
-                data: {
-                    datasets: [
-                        { label: 'Avg. Fitness (%)', data: [], borderColor: 'rgb(59, 130, 246)', tension: 0.1, yAxisID: 'y_fitness' },
-                        { label: 'Population', data: [], borderColor: 'rgb(239, 68, 68)', tension: 0.1, yAxisID: 'y_population' }
-                    ]
-                },
-                options: commonOptions
-            });
+        const generateTrendData = (start, end, points, noise) => {
+            const data = [];
+            const step = (end - start) / (points - 1);
+            for (let i = 0; i < points; i++) {
+                const ideal = start + (i * step);
+                const noisy = ideal + (Math.random() - 0.5) * noise * (end - start);
+                data.push(Math.max(0, Math.min(100, noisy)));
+            }
+            return data;
         };
         
-        const updateCharts = () => {
-            const avgFitness = population.length > 0 ? (population.reduce((sum, ind) => sum + ind.fitness, 0) / population.length) * 100 : 0;
-            
-            // Push data as {x, y} objects for a linear scale
-            fitnessChart.data.datasets[0].data.push({ x: generation, y: avgFitness });
-            fitnessChart.data.datasets[1].data.push({ x: generation, y: population.length });
-            
-            const maxDataPoints = 100;
-            if (fitnessChart.data.datasets[0].data.length > maxDataPoints) {
-                 fitnessChart.data.datasets[0].data.shift();
-                 fitnessChart.data.datasets[1].data.shift();
-            }
-            fitnessChart.update();
-        };
-
-        // --- Main Control Flow & Event Handlers ---
-        const startSimulation = () => {
-            if (isRunning) return;
-            isRunning = true;
-            startPauseButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> Pause`;
-            const speed = speedSlider.value;
-            simulationInterval = setInterval(runGeneration, 1000 / speed);
-        };
-
-        const pauseSimulation = () => {
-            if (!isRunning) return;
-            isRunning = false;
-            startPauseButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Play`;
-            clearInterval(simulationInterval);
+        const generatePopulationData = (start, peak, end, points, pressure) => {
+             const data = [];
+             for(let i = 0; i < points; i++) {
+                 let val;
+                 if (i < points / 2) {
+                     val = start + (peak - start) * (i / (points / 2));
+                 } else {
+                     val = peak - (peak - end) * ((i - points / 2) / (points / 2));
+                 }
+                 val *= (1 - (Math.random() * pressure));
+                 data.push(Math.round(Math.max(10, val)));
+             }
+             return data;
         };
         
-        const resetSimulation = () => {
-            pauseSimulation();
+        const generations = Array.from({length: 50}, (_, i) => `Gen ${i + 1}`);
 
-            // --- Save Previous Run Data ---
-            if (generation > 1 && fitnessChart.data.datasets[0].data.length > 1) {
-                const lastRunFitnessData = [...fitnessChart.data.datasets[0].data];
-                const lastRunPopulationData = [...fitnessChart.data.datasets[1].data];
-                const lastRecomb = Math.round(parseFloat(recombinationSlider.value) * 100);
-                const lastPressure = Math.round(parseFloat(pressureSlider.value) * 100);
-
-                // Remove any old historical datasets by filtering for the custom flag
-                fitnessChart.data.datasets = fitnessChart.data.datasets.filter(ds => !ds.isHistorical);
-
-                const historicalFitnessDataset = {
-                    label: `Previous Fitness (R: ${lastRecomb}%, P: ${lastPressure}%)`,
-                    data: lastRunFitnessData,
-                    borderColor: 'rgba(156, 163, 175, 0.6)', // Gray color
-                    tension: 0.1,
-                    yAxisID: 'y_fitness',
-                    isHistorical: true, // Custom flag to identify it
-                };
-
-                const historicalPopulationDataset = {
-                    label: `Previous Population`,
-                    data: lastRunPopulationData,
-                    borderColor: 'rgba(252, 165, 165, 0.8)', // Pale pink color
-                    tension: 0.1,
-                    yAxisID: 'y_population',
-                    isHistorical: true,
-                };
-                
-                fitnessChart.data.datasets.push(historicalFitnessDataset, historicalPopulationDataset);
-            }
-            
-            // --- Reset State for New Simulation ---
-            generation = 0;
-            simMessage.textContent = '';
-            simMessage.className = 'mt-3 text-center text-lg font-semibold h-8';
-            
-            if (currentScenario) {
-                const initialRecomb = scenarios.default.params.recombinationRate;
-                recombinationSlider.value = initialRecomb;
-                recombinationValue.textContent = `${Math.round(initialRecomb * 100)}%`;
-
-                const initialPressure = scenarios.default.params.environmentalPressure;
-                pressureSlider.value = initialPressure;
-                pressureValue.textContent = `${Math.round(initialPressure * 100)}%`;
-                
-                // Also reset the internal parameters to default
-                currentScenario.params.recombinationRate = initialRecomb;
-                currentScenario.params.environmentalPressure = initialPressure;
-            }
-
-            initializePopulation();
-            
-            // Clear only the data for the active simulation lines (blue and red)
-            fitnessChart.data.datasets[0].data = [];
-            fitnessChart.data.datasets[1].data = [];
-
-            fitnessChart.update();
-            updateStats();
-        };
-
-        startPauseButton.addEventListener('click', () => {
-            if (isRunning) {
-                pauseSimulation();
-            } else {
-                startSimulation();
-            }
-        });
-
-        resetButton.addEventListener('click', resetSimulation);
-
-        speedSlider.addEventListener('input', (e) => {
-            if (isRunning) {
-                clearInterval(simulationInterval);
-                const speed = e.target.value;
-                simulationInterval = setInterval(runGeneration, 1000 / speed);
-            }
-        });
-
-        recombinationSlider.addEventListener('input', (e) => {
-            const rate = parseFloat(e.target.value);
-            currentScenario.params.recombinationRate = rate;
-            recombinationValue.textContent = `${Math.round(rate * 100)}%`;
-        });
-
-        pressureSlider.addEventListener('input', (e) => {
-            const rate = parseFloat(e.target.value);
-            currentScenario.params.environmentalPressure = rate;
-            pressureValue.textContent = `${Math.round(rate * 100)}%`;
-        });
-
-        // --- Initial Setup ---
-        const initialSetup = () => {
-            currentScenario = JSON.parse(JSON.stringify(scenarios['default'])); // Deep copy
-            extinctionCount = 0;
-            extinctionStat.textContent = extinctionCount;
-            setupCharts(currentScenario.params.maxPopulation);
-            resetSimulation();
-        };
-
-        // Run setup when the page loads
-        initialSetup();
-
-    </script>
-</body>
-</html>
-
+        new Chart(document.getElementById('mainEvolutionChart'), {
+            type: 'line',
+            data: {
+                labels: generations,
+                datasets: [
+                    {
+                        label: 'Avg. Fitness (%)',
+                        data: generateTrendData(20, 85, 50, 0.1),
+                        borderColor: '#07575B',
+                        backgroundColor: 'rgba(7, 87, 91, 0.1)',
+                        yAxisID: 'yFitness',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Population',
+                        data: generatePopulationData(50, 450, 400, 50, 0.1),
+                        borderColor: '#FF
 
