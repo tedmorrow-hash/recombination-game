@@ -318,10 +318,15 @@
                     </div>
                 </div>
 
-                <!-- DESKTOP LAYOUT: Compass/Cycle layout -->
-                <div class="hidden md:grid grid-cols-3 grid-rows-3 gap-6 items-center justify-items-stretch max-w-3xl mx-auto" style="grid-template-rows: auto 6rem auto;">
-                    <!-- Reproduction (Top) -->
-                    <div class="col-start-2 row-start-1 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center h-full">
+                <!-- DESKTOP LAYOUT: Tighter 3x3 Compass/Cycle layout -->
+                <div class="hidden md:grid grid-cols-3 grid-rows-3 gap-x-8 gap-y-2 items-center justify-items-center max-w-3xl mx-auto">
+                    <!-- ARROW 4 -> 1 (Up-Right) -->
+                    <div class="col-start-1 row-start-1 flex items-center justify-center">
+                        <div class="flow-arrow text-4xl transform rotate-[315deg]">&#10140;</div>
+                    </div>
+
+                    <!-- BOX 1: Reproduction (Top Center) -->
+                    <div class="col-start-2 row-start-1 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center w-full">
                         <h4 class="font-bold text-lg text-gray-700">
                             <span class="lang-en">1. Reproduction</span>
                             <span class="lang-sv">1. Reproduktion</span>
@@ -331,30 +336,14 @@
                             <span class="lang-sv">Föräldrar väljs för att skapa avkomma, och gener blandas baserat på rekombinationshastigheten.</span>
                         </p>
                     </div>
-                    <!-- New Offspring (Right) -->
-                    <div class="col-start-3 row-start-2 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center h-full">
-                        <h4 class="font-bold text-lg text-gray-700">
-                            <span class="lang-en">2. New Offspring</span>
-                            <span class="lang-sv">2. Ny avkomma</span>
-                        </h4>
-                        <p class="text-sm">
-                            <span class="lang-en">A new generation is born, with a mix of old and new genetic combinations.</span>
-                            <span class="lang-sv">En ny generation föds, med en blandning av gamla och nya genetiska kombinationer.</span>
-                        </p>
+
+                    <!-- ARROW 1 -> 2 (Down-Right) -->
+                    <div class="col-start-3 row-start-1 flex items-center justify-center">
+                        <div class="flow-arrow text-4xl transform rotate-45">&#10140;</div>
                     </div>
-                    <!-- Selection (Bottom) -->
-                    <div class="col-start-2 row-start-3 text-center p-4 bg-red-50 rounded-lg border-2 border-red-300 flex flex-col justify-center h-full">
-                        <h4 class="font-bold text-lg text-red-700">
-                            <span class="lang-en">3. Selection</span>
-                            <span class="lang-sv">3. Selektion</span>
-                        </h4>
-                        <p class="text-sm">
-                            <span class="lang-en">The environment applies its pressure, culling the least-fit individuals from the new generation.</span>
-                            <span class="lang-sv">Miljön utövar sitt tryck och gallrar bort de minst anpassade individerna från den nya generationen.</span>
-                        </p>
-                    </div>
-                    <!-- Survivors (Left) -->
-                    <div class="col-start-1 row-start-2 text-center p-4 bg-green-50 rounded-lg border-2 border-green-300 flex flex-col justify-center h-full">
+
+                    <!-- BOX 4: Survivors (Middle Left) -->
+                    <div class="col-start-1 row-start-2 text-center p-4 bg-green-50 rounded-lg border-2 border-green-300 flex flex-col justify-center w-full">
                        <h4 class="font-bold text-lg text-green-700">
                             <span class="lang-en">4. Survivors</span>
                             <span class="lang-sv">4. Överlevare</span>
@@ -365,9 +354,40 @@
                         </p>
                     </div>
                     
-                    <!-- Central rotating arrow -->
-                    <div class="col-start-2 row-start-2 flex items-center justify-center">
-                        <div class="text-7xl text-[#FC913A] font-light">&#x21BA;</div>
+                    <!-- Middle is empty -->
+
+                    <!-- BOX 2: New Offspring (Middle Right) -->
+                    <div class="col-start-3 row-start-2 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center w-full">
+                        <h4 class="font-bold text-lg text-gray-700">
+                            <span class="lang-en">2. New Offspring</span>
+                            <span class="lang-sv">2. Ny avkomma</span>
+                        </h4>
+                        <p class="text-sm">
+                            <span class="lang-en">A new generation is born, with a mix of old and new genetic combinations.</span>
+                            <span class="lang-sv">En ny generation föds, med en blandning av gamla och nya genetiska kombinationer.</span>
+                        </p>
+                    </div>
+
+                     <!-- ARROW 3 -> 4 (Up-Left) -->
+                     <div class="col-start-1 row-start-3 flex items-center justify-center">
+                        <div class="flow-arrow text-4xl transform rotate-[225deg]">&#10140;</div>
+                    </div>
+
+                    <!-- BOX 3: Selection (Bottom Center) -->
+                    <div class="col-start-2 row-start-3 text-center p-4 bg-red-50 rounded-lg border-2 border-red-300 flex flex-col justify-center w-full">
+                        <h4 class="font-bold text-lg text-red-700">
+                            <span class="lang-en">3. Selection</span>
+                            <span class="lang-sv">3. Selektion</span>
+                        </h4>
+                        <p class="text-sm">
+                            <span class="lang-en">The environment applies its pressure, culling the least-fit individuals from the new generation.</span>
+                            <span class="lang-sv">Miljön utövar sitt tryck och gallrar bort de minst anpassade individerna från den nya generationen.</span>
+                        </p>
+                    </div>
+
+                    <!-- ARROW 2 -> 3 (Down-Left) -->
+                    <div class="col-start-3 row-start-3 flex items-center justify-center">
+                         <div class="flow-arrow text-4xl transform rotate-135">&#10140;</div>
                     </div>
                 </div>
             </div>
@@ -574,5 +594,4 @@
     </script>
 </body>
 </html>
-
 
