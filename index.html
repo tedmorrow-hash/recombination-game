@@ -43,54 +43,109 @@
              background-color: #FF4E50;
              color: white;
         }
+        .lang-sv { display: none; }
+        .lang-toggle-active {
+            background-color: #FF4E50;
+            color: white;
+        }
+        .lang-toggle-inactive {
+            background-color: #e2e8f0;
+            color: #4a5568;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
     <div class="container mx-auto p-4 md:p-8">
 
-        <header class="text-center my-8 md:my-16">
-            <h1 class="text-5xl md:text-7xl font-black gradient-text">EvoSim</h1>
-            <p class="text-xl md:text-2xl font-semibold text-gray-700 mt-2">Master the Forces of Evolution</p>
-            <p class="max-w-3xl mx-auto mt-4 text-gray-600">This is an interactive simulation where you control the rules of natural selection. Explore how genetics and environment shape the destiny of a population, all within a digital laboratory.</p>
-            <div class="mt-8">
-                <a href="simulation.html" class="inline-block bg-gradient-to-r from-[#FF4E50] to-[#FC913A] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300">
-                    Launch the Simulation &rarr;
-                </a>
+        <header class="text-center my-8 md:my-12 relative">
+            <div class="absolute top-0 right-0 p-2">
+                <div class="flex space-x-1 rounded-full bg-gray-200 p-1">
+                    <button id="lang-en-btn" class="lang-toggle-active px-4 py-1 text-sm font-semibold rounded-full focus:outline-none transition-colors duration-300">EN</button>
+                    <button id="lang-sv-btn" class="lang-toggle-inactive px-4 py-1 text-sm font-semibold rounded-full focus:outline-none transition-colors duration-300">SV</button>
+                </div>
             </div>
+            <h1 class="text-5xl md:text-7xl font-black gradient-text">EvoSim</h1>
+            <p class="text-xl md:text-2xl font-semibold text-gray-700 mt-2">
+                <span class="lang-en">Master the Forces of Evolution</span>
+                <span class="lang-sv">Bemästra evolutionens krafter</span>
+            </p>
+            <p class="max-w-3xl mx-auto mt-4 text-gray-600">
+                <span class="lang-en">This is an interactive simulation where you control the rules of natural selection. Explore how genetics and environment shape the destiny of a population, all within a digital laboratory.</span>
+                <span class="lang-sv">Detta är en interaktiv simulering där du styr reglerna för naturligt urval. Utforska hur genetik och miljö formar en populations öde, allt inom ett digitalt laboratorium.</span>
+            </p>
         </header>
         
         <section id="controls" class="my-12">
             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Your Evolutionary Toolkit</h2>
-                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">You have two primary levers to pull. Your choices directly influence how the population adapts, thrives, or perishes. This simple flow shows how your input drives the outcome.</p>
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">
+                    <span class="lang-en">Your Evolutionary Toolkit</span>
+                    <span class="lang-sv">Din evolutionära verktygslåda</span>
+                </h2>
+                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">
+                    <span class="lang-en">You have two primary levers to pull. Your choices directly influence how the population adapts, thrives, or perishes. This simple flow shows how your input drives the outcome.</span>
+                    <span class="lang-sv">Du har två primära spakar att dra i. Dina val påverkar direkt hur populationen anpassar sig, frodas eller går under. Detta enkla flöde visar hur dina val driver resultatet.</span>
+                </p>
                 <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
                     <div class="text-center">
-                        <h3 class="text-xl font-bold text-gray-700">PLAYER INPUTS</h3>
+                        <h3 class="text-xl font-bold text-gray-700">
+                            <span class="lang-en">PLAYER INPUTS</span>
+                            <span class="lang-sv">ANVÄNDARINPUT</span>
+                        </h3>
                         <div class="mt-4 space-y-4">
                             <div class="p-4 bg-gray-50 rounded-lg border-2 flow-box">
-                                <h4 class="font-semibold text-lg text-[#FF4E50]">Recombination Rate</h4>
-                                <p class="text-sm">The "gene shuffling" speed.</p>
+                                <h4 class="font-semibold text-lg text-[#FF4E50]">
+                                    <span class="lang-en">Recombination Rate</span>
+                                    <span class="lang-sv">Rekombinationshastighet</span>
+                                </h4>
+                                <p class="text-sm">
+                                    <span class="lang-en">The "gene shuffling" speed.</span>
+                                    <span class="lang-sv">Hastigheten på "genblandningen".</span>
+                                </p>
                             </div>
                             <div class="p-4 bg-gray-50 rounded-lg border-2 flow-box">
-                                <h4 class="font-semibold text-lg text-[#FF4E50]">Selection Pressure</h4>
-                                <p class="text-sm">The harshness of the environment.</p>
+                                <h4 class="font-semibold text-lg text-[#FF4E50]">
+                                    <span class="lang-en">Selection Pressure</span>
+                                    <span class="lang-sv">Selektionstryck</span>
+                                </h4>
+                                <p class="text-sm">
+                                    <span class="lang-en">The harshness of the environment.</span>
+                                    <span class="lang-sv">Miljöns påfrestning.</span>
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="flow-arrow transform md:-rotate-0 rotate-90">&rarr;</div>
                     <div class="text-center">
-                        <h3 class="text-xl font-bold text-gray-700">SIMULATION ENGINE</h3>
+                        <h3 class="text-xl font-bold text-gray-700">
+                            <span class="lang-en">SIMULATION ENGINE</span>
+                            <span class="lang-sv">SIMULERINGSMOTOR</span>
+                        </h3>
                         <div class="mt-4 p-4 bg-gray-50 rounded-lg border-2 flow-box">
-                            <h4 class="font-semibold text-lg text-gray-600">Generational Cycle</h4>
-                            <p class="text-sm">Applies rules of inheritance & survival.</p>
+                            <h4 class="font-semibold text-lg text-gray-600">
+                                <span class="lang-en">Generational Cycle</span>
+                                <span class="lang-sv">Generationscykel</span>
+                            </h4>
+                            <p class="text-sm">
+                                <span class="lang-en">Applies rules of inheritance & survival.</span>
+                                <span class="lang-sv">Tillämpar regler för arv & överlevnad.</span>
+                            </p>
                         </div>
                     </div>
                     <div class="flow-arrow transform md:-rotate-0 rotate-90">&rarr;</div>
                     <div class="text-center">
-                        <h3 class="text-xl font-bold text-gray-700">EVOLUTIONARY OUTCOME</h3>
+                        <h3 class="text-xl font-bold text-gray-700">
+                            <span class="lang-en">EVOLUTIONARY OUTCOME</span>
+                            <span class="lang-sv">EVOLUTIONÄRT RESULTAT</span>
+                        </h3>
                         <div class="mt-4 p-4 bg-gray-50 rounded-lg border-2 flow-box">
-                            <h4 class="font-semibold text-lg text-[#FC913A]">Population Data</h4>
-                            <p class="text-sm">Charts fitness & size over time.</p>
+                            <h4 class="font-semibold text-lg text-[#FC913A]">
+                                <span class="lang-en">Population Data</span>
+                                <span class="lang-sv">Populationsdata</span>
+                            </h4>
+                            <p class="text-sm">
+                                <span class="lang-en">Charts fitness & size over time.</span>
+                                <span class="lang-sv">Visar fitness & storlek över tid.</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -99,18 +154,36 @@
 
         <section id="fitness" class="my-12">
             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Decoding the Genome</h2>
-                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">In EvoSim, "fitness" is simple. Each organism has a genome of 1s and 0s. Fitness is the percentage of '1's. A higher percentage means a better-adapted individual, with a greater chance to survive and reproduce.</p>
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">
+                    <span class="lang-en">Decoding the Genome</span>
+                    <span class="lang-sv">Avkodning av genomet</span>
+                </h2>
+                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">
+                    <span class="lang-en">In EvoSim, "fitness" is simple. Each organism has a genome of 1s and 0s. Fitness is the percentage of '1's. A higher percentage means a better-adapted individual, with a greater chance to survive and reproduce.</span>
+                    <span class="lang-sv">I EvoSim är "fitness" enkelt. Varje organism har ett genom av 1:or och 0:or. Fitness är andelen '1':or. En högre andel innebär en bättre anpassad individ, med större chans att överleva och reproducera sig.</span>
+                </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div class="text-center p-6 bg-green-50 rounded-lg">
-                        <h3 class="text-2xl font-bold text-green-700">High Fitness (90%)</h3>
+                        <h3 class="text-2xl font-bold text-green-700">
+                            <span class="lang-en">High Fitness (90%)</span>
+                            <span class="lang-sv">Hög fitness (90%)</span>
+                        </h3>
                         <p class="font-mono text-xl my-4 p-2 bg-green-200 rounded">1110111101</p>
-                        <p>This organism is well-suited to its environment and is very likely to pass on its genes.</p>
+                        <p>
+                            <span class="lang-en">This organism is well-suited to its environment and is very likely to pass on its genes.</span>
+                            <span class="lang-sv">Denna organism är väl anpassad till sin miljö och kommer med stor sannolikhet att föra sina gener vidare.</span>
+                        </p>
                     </div>
                     <div class="text-center p-6 bg-red-50 rounded-lg">
-                        <h3 class="text-2xl font-bold text-red-700">Low Fitness (20%)</h3>
+                        <h3 class="text-2xl font-bold text-red-700">
+                            <span class="lang-en">Low Fitness (20%)</span>
+                            <span class="lang-sv">Låg fitness (20%)</span>
+                        </h3>
                         <p class="font-mono text-xl my-4 p-2 bg-red-200 rounded">0100001000</p>
-                        <p>This organism is struggling. It's a prime candidate for being culled by selection pressure.</p>
+                        <p>
+                            <span class="lang-en">This organism is struggling. It's a prime candidate for being culled by selection pressure.</span>
+                            <span class="lang-sv">Denna organism kämpar. Den är en trolig kandidat för att gallras bort av selektionstrycket.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -118,8 +191,14 @@
         
         <section id="main-chart" class="my-12">
              <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">The Story of a Population</h2>
-                <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">The main chart tells the epic story of your population's journey. The blue line tracks the average fitness—the population's overall adaptation. The red line shows the population size. A successful run often sees rising fitness and a stable, healthy population.</p>
+                <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+                    <span class="lang-en">The Story of a Population</span>
+                    <span class="lang-sv">Berättelsen om en population</span>
+                </h2>
+                <p class="text-center max-w-3xl mx-auto mb-8 text-gray-600">
+                    <span class="lang-en">The main chart tells the epic story of your population's journey. The blue line tracks the average fitness—the population's overall adaptation. The red line shows the population size. A successful run often sees rising fitness and a stable, healthy population.</span>
+                    <span class="lang-sv">Huvuddiagrammet berättar den episka historien om din populations resa. Den blå linjen följer den genomsnittliga fitnessen – populationens övergripande anpassning. Den röda linjen visar populationsstorleken. En framgångsrik körning visar ofta stigande fitness och en stabil, hälsosam population.</span>
+                </p>
                 <div class="chart-container">
                     <canvas id="mainEvolutionChart"></canvas>
                 </div>
@@ -127,25 +206,46 @@
         </section>
 
         <section id="scenarios" class="my-12">
-            <h2 class="text-4xl font-bold text-center mb-10 text-gray-800">Run the Experiments!</h2>
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-800">
+                <span class="lang-en">Run the Experiments!</span>
+                <span class="lang-sv">Kör experimenten!</span>
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FF4E50]">1. The Adaptation Challenge</h3>
-                    <p class="mb-4 text-center text-gray-600">Can a population survive a sudden, harsh environment (75% pressure)? This test shows how high recombination (gene shuffling) is crucial for rapid adaptation and survival.</p>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FF4E50]">
+                        <span class="lang-en">1. The Adaptation Challenge</span>
+                        <span class="lang-sv">1. Anpassningsutmaningen</span>
+                    </h3>
+                    <p class="mb-4 text-center text-gray-600">
+                        <span class="lang-en">Can a population survive a sudden, harsh environment (75% pressure)? This test shows how high recombination (gene shuffling) is crucial for rapid adaptation and survival.</span>
+                        <span class="lang-sv">Kan en population överleva en plötslig, hård miljö (75% tryck)? Detta test visar hur hög rekombination (genblandning) är avgörande för snabb anpassning och överlevnad.</span>
+                    </p>
                     <div class="chart-container h-64 max-h-64">
                         <canvas id="adaptationChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FC913A]">2. The Cost of Stability</h3>
-                    <p class="mb-4 text-center text-gray-600">What happens in a comfortable environment (10% pressure) with no genetic mixing? Without recombination, fitness stagnates, unable to discover better solutions.</p>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#FC913A]">
+                        <span class="lang-en">2. The Cost of Stability</span>
+                        <span class="lang-sv">2. Stabilitetens kostnad</span>
+                    </h3>
+                    <p class="mb-4 text-center text-gray-600">
+                        <span class="lang-en">What happens in a comfortable environment (10% pressure) with no genetic mixing? Without recombination, fitness stagnates, unable to discover better solutions.</span>
+                        <span class="lang-sv">Vad händer i en bekväm miljö (10% tryck) utan genetisk blandning? Utan rekombination stagnerar fitness, oförmögen att hitta bättre lösningar.</span>
+                    </p>
                     <div class="chart-container h-64 max-h-64">
                         <canvas id="stabilityChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#F9D423]">3. The Extinction Vortex</h3>
-                    <p class="mb-4 text-center text-gray-600">When a healthy population is suddenly hit with extreme pressure (90%), it can enter a death spiral. This chart shows a rapid collapse in both population and fitness.</p>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#F9D423]">
+                        <span class="lang-en">3. The Extinction Vortex</span>
+                        <span class="lang-sv">3. Utrotningsspiralen</span>
+                    </h3>
+                    <p class="mb-4 text-center text-gray-600">
+                        <span class="lang-en">When a healthy population is suddenly hit with extreme pressure (90%), it can enter a death spiral. This chart shows a rapid collapse in both population and fitness.</span>
+                        <span class="lang-sv">När en hälsosam population plötsligt drabbas av extremt tryck (90%) kan den hamna i en dödsspiral. Detta diagram visar en snabb kollaps i både population och fitness.</span>
+                    </p>
                     <div class="chart-container h-64 max-h-64">
                         <canvas id="extinctionChart"></canvas>
                     </div>
@@ -155,27 +255,57 @@
         
         <section id="cycle" class="my-12">
             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">The Generation Cycle</h2>
-                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">Each "generation" in the simulation is a complete loop of life, death, and reproduction. Here is the step-by-step process that repeats continuously.</p>
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">
+                    <span class="lang-en">The Generation Cycle</span>
+                    <span class="lang-sv">Generationscykeln</span>
+                </h2>
+                <p class="text-center max-w-2xl mx-auto mb-8 text-gray-600">
+                    <span class="lang-en">Each "generation" in the simulation is a complete loop of life, death, and reproduction. Here is the step-by-step process that repeats continuously.</span>
+                    <span class="lang-sv">Varje "generation" i simuleringen är en komplett cykel av liv, död och reproduktion. Här är den steg-för-steg-process som upprepas kontinuerligt.</span>
+                </p>
                 <div class="flex flex-col md:flex-row items-stretch justify-center space-y-4 md:space-y-0 md:space-x-4">
                     <div class="flex-1 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center">
-                        <h4 class="font-bold text-lg text-gray-700">1. Reproduction</h4>
-                        <p class="text-sm">Parents are chosen to create offspring, shuffling genes based on the Recombination Rate.</p>
+                        <h4 class="font-bold text-lg text-gray-700">
+                            <span class="lang-en">1. Reproduction</span>
+                            <span class="lang-sv">1. Reproduktion</span>
+                        </h4>
+                        <p class="text-sm">
+                            <span class="lang-en">Parents are chosen to create offspring, shuffling genes based on the Recombination Rate.</span>
+                            <span class="lang-sv">Föräldrar väljs för att skapa avkomma, och gener blandas baserat på rekombinationshastigheten.</span>
+                        </p>
                     </div>
                     <div class="flow-arrow self-center transform rotate-90 md:rotate-0">&darr;</div>
                     <div class="flex-1 text-center p-4 bg-gray-50 rounded-lg border-2 flow-box flex flex-col justify-center">
-                        <h4 class="font-bold text-lg text-gray-700">2. New Offspring</h4>
-                        <p class="text-sm">A new generation is born, with a mix of old and new genetic combinations.</p>
+                        <h4 class="font-bold text-lg text-gray-700">
+                            <span class="lang-en">2. New Offspring</span>
+                            <span class="lang-sv">2. Ny avkomma</span>
+                        </h4>
+                        <p class="text-sm">
+                            <span class="lang-en">A new generation is born, with a mix of old and new genetic combinations.</span>
+                            <span class="lang-sv">En ny generation föds, med en blandning av gamla och nya genetiska kombinationer.</span>
+                        </p>
                     </div>
                     <div class="flow-arrow self-center transform rotate-90 md:rotate-0">&darr;</div>
                     <div class="flex-1 text-center p-4 bg-red-50 rounded-lg border-2 border-red-300 flex flex-col justify-center">
-                        <h4 class="font-bold text-lg text-red-700">3. Selection</h4>
-                        <p class="text-sm">The environment applies its pressure, culling the least-fit individuals from the new generation.</p>
+                        <h4 class="font-bold text-lg text-red-700">
+                            <span class="lang-en">3. Selection</span>
+                            <span class="lang-sv">3. Selektion</span>
+                        </h4>
+                        <p class="text-sm">
+                            <span class="lang-en">The environment applies its pressure, culling the least-fit individuals from the new generation.</span>
+                            <span class="lang-sv">Miljön utövar sitt tryck och gallrar bort de minst anpassade individerna från den nya generationen.</span>
+                        </p>
                     </div>
                      <div class="flow-arrow self-center transform rotate-90 md:rotate-0">&darr;</div>
                     <div class="flex-1 text-center p-4 bg-green-50 rounded-lg border-2 border-green-300 flex flex-col justify-center">
-                        <h4 class="font-bold text-lg text-green-700">4. Survivors</h4>
-                        <p class="text-sm">The remaining individuals form the parent pool for the next generation. The cycle repeats.</p>
+                        <h4 class="font-bold text-lg text-green-700">
+                            <span class="lang-en">4. Survivors</span>
+                            <span class="lang-sv">4. Överlevare</span>
+                        </h4>
+                        <p class="text-sm">
+                            <span class="lang-en">The remaining individuals form the parent pool for the next generation. The cycle repeats.</span>
+                            <span class="lang-sv">De återstående individerna utgör föräldragruppen för nästa generation. Cykeln upprepas.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -184,6 +314,9 @@
     </div>
 
     <script>
+        const chartInstances = {};
+        let currentLanguage = 'en';
+
         const tooltipTitleCallback = {
             plugins: {
                 tooltip: {
@@ -200,24 +333,6 @@
                     }
                 }
             }
-        };
-
-        const wrapLabels = (label) => {
-            if (typeof label === 'string' && label.length > 16) {
-                const words = label.split(' ');
-                const lines = [];
-                let currentLine = '';
-                words.forEach(word => {
-                    if ((currentLine + word).length > 16) {
-                        lines.push(currentLine.trim());
-                        currentLine = '';
-                    }
-                    currentLine += word + ' ';
-                });
-                lines.push(currentLine.trim());
-                return lines;
-            }
-            return label;
         };
 
         const generateTrendData = (start, end, points, noise) => {
@@ -246,24 +361,155 @@
              return data;
         };
         
-        const generations = Array.from({length: 50}, (_, i) => `Gen ${i + 1}`);
+        const chartData = {
+            main: {
+                labels: Array.from({length: 50}, (_, i) => i + 1),
+                fitnessData: generateTrendData(20, 85, 50, 0.1),
+                populationData: generatePopulationData(50, 450, 400, 50, 0.1)
+            },
+            adaptation: {
+                labels: Array.from({length: 20}, (_, i) => i + 1),
+                highRecombData: generateTrendData(15, 60, 20, 0.2),
+                lowRecombData: generateTrendData(15, 5, 20, 0.1)
+            },
+            stability: {
+                labels: Array.from({length: 50}, (_, i) => i + 1),
+                data: generateTrendData(50, 55, 50, 0.05)
+            },
+            extinction: {
+                labels: Array.from({length: 15}, (_, i) => i + 1),
+                data: generatePopulationData(400, 150, 0, 15, 0.5)
+            }
+        };
 
-        new Chart(document.getElementById('mainEvolutionChart'), {
-            type: 'line',
-            data: {
-                labels: generations,
-                datasets: [
-                    {
-                        label: 'Avg. Fitness (%)',
-                        data: generateTrendData(20, 85, 50, 0.1),
-                        borderColor: '#07575B',
-                        backgroundColor: 'rgba(7, 87, 91, 0.1)',
-                        yAxisID: 'yFitness',
-                        fill: true,
-                        tension: 0.3
+        const chartConfigs = {
+            en: {
+                mainEvolutionChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.main.labels.map(g => `Gen ${g}`),
+                        datasets: [
+                            { label: 'Avg. Fitness (%)', data: chartData.main.fitnessData, borderColor: '#07575B', backgroundColor: 'rgba(7, 87, 91, 0.1)', yAxisID: 'yFitness', fill: true, tension: 0.3 },
+                            { label: 'Population', data: chartData.main.populationData, borderColor: '#FF4E50', backgroundColor: 'rgba(255, 78, 80, 0.1)', yAxisID: 'yPopulation', fill: true, tension: 0.3 }
+                        ]
                     },
-                    {
-                        label: 'Population',
-                        data: generatePopulationData(50, 450, 400, 50, 0.1),
-                        borderColor: '#FF
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, scales: { yFitness: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Avg. Fitness (%)' }, min: 0, max: 100 }, yPopulation: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Population Size' }, grid: { drawOnChartArea: false } } } }
+                },
+                adaptationChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.adaptation.labels.map(g => `Gen ${g}`),
+                        datasets: [
+                            { label: 'With High Recombination', data: chartData.adaptation.highRecombData, borderColor: '#FC913A', backgroundColor: 'transparent', tension: 0.4 },
+                            { label: 'With Low Recombination', data: chartData.adaptation.lowRecombData, borderColor: '#cccccc', backgroundColor: 'transparent', borderDash: [5, 5], tension: 0.4 }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, plugins: {...tooltipTitleCallback.plugins, legend: {position: 'bottom'}}, scales: { y: { min: 0, max: 100, title: {display: true, text: 'Fitness (%)'}}} }
+                },
+                stabilityChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.stability.labels.map(g => `Gen ${g}`),
+                        datasets: [{ label: 'Fitness with No Recombination', data: chartData.stability.data, borderColor: '#F9D423', backgroundColor: 'rgba(249, 212, 35, 0.1)', fill: true, tension: 0.1 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, plugins: {...tooltipTitleCallback.plugins, legend: {display: false}}, scales: { y: { min: 0, max: 100, title: {display: true, text: 'Fitness (%)'}}} }
+                },
+                extinctionChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.extinction.labels.map(g => `Gen ${g}`),
+                        datasets: [{ label: 'Population Size', data: chartData.extinction.data, borderColor: '#FF4E50', backgroundColor: 'rgba(255, 78, 80, 0.2)', fill: true, tension: 0.2 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, plugins: {...tooltipTitleCallback.plugins, legend: {display: false}}, scales: { y: { title: {display: true, text: 'Population'}}} }
+                }
+            },
+            sv: {
+                mainEvolutionChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.main.labels.map(g => `Gen ${g}`),
+                        datasets: [
+                            { label: 'Genomsnittlig fitness (%)', data: chartData.main.fitnessData, borderColor: '#07575B', backgroundColor: 'rgba(7, 87, 91, 0.1)', yAxisID: 'yFitness', fill: true, tension: 0.3 },
+                            { label: 'Population', data: chartData.main.populationData, borderColor: '#FF4E50', backgroundColor: 'rgba(255, 78, 80, 0.1)', yAxisID: 'yPopulation', fill: true, tension: 0.3 }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, scales: { yFitness: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Genomsnittlig fitness (%)' }, min: 0, max: 100 }, yPopulation: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Populationsstorlek' }, grid: { drawOnChartArea: false } } } }
+                },
+                adaptationChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.adaptation.labels.map(g => `Gen ${g}`),
+                        datasets: [
+                            { label: 'Med hög rekombination', data: chartData.adaptation.highRecombData, borderColor: '#FC913A', backgroundColor: 'transparent', tension: 0.4 },
+                            { label: 'Med låg rekombination', data: chartData.adaptation.lowRecombData, borderColor: '#cccccc', backgroundColor: 'transparent', borderDash: [5, 5], tension: 0.4 }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, plugins: {...tooltipTitleCallback.plugins, legend: {position: 'bottom'}}, scales: { y: { min: 0, max: 100, title: {display: true, text: 'Fitness (%)'}}} }
+                },
+                stabilityChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.stability.labels.map(g => `Gen ${g}`),
+                        datasets: [{ label: 'Fitness utan rekombination', data: chartData.stability.data, borderColor: '#F9D423', backgroundColor: 'rgba(249, 212, 35, 0.1)', fill: true, tension: 0.1 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, plugins: {...tooltipTitleCallback.plugins, legend: {display: false}}, scales: { y: { min: 0, max: 100, title: {display: true, text: 'Fitness (%)'}}} }
+                },
+                extinctionChart: {
+                    type: 'line',
+                    data: {
+                        labels: chartData.extinction.labels.map(g => `Gen ${g}`),
+                        datasets: [{ label: 'Populationsstorlek', data: chartData.extinction.data, borderColor: '#FF4E50', backgroundColor: 'rgba(255, 78, 80, 0.2)', fill: true, tension: 0.2 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, ...tooltipTitleCallback, plugins: {...tooltipTitleCallback.plugins, legend: {display: false}}, scales: { y: { title: {display: true, text: 'Population'}}} }
+                }
+            }
+        };
+
+        function createCharts(lang) {
+            Object.keys(chartInstances).forEach(id => chartInstances[id].destroy());
+            
+            const config = chartConfigs[lang];
+            Object.keys(config).forEach(id => {
+                const ctx = document.getElementById(id).getContext('2d');
+                chartInstances[id] = new Chart(ctx, config[id]);
+            });
+        }
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-en, .lang-sv').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                el.style.display = 'inline'; // Use inline to not break layout
+            });
+
+            const enBtn = document.getElementById('lang-en-btn');
+            const svBtn = document.getElementById('lang-sv-btn');
+
+            if (lang === 'en') {
+                enBtn.classList.add('lang-toggle-active');
+                enBtn.classList.remove('lang-toggle-inactive');
+                svBtn.classList.add('lang-toggle-inactive');
+                svBtn.classList.remove('lang-toggle-active');
+            } else {
+                svBtn.classList.add('lang-toggle-active');
+                svBtn.classList.remove('lang-toggle-inactive');
+                enBtn.classList.add('lang-toggle-inactive');
+                enBtn.classList.remove('lang-toggle-active');
+            }
+            
+            createCharts(lang);
+        }
+
+        document.getElementById('lang-en-btn').addEventListener('click', () => setLanguage('en'));
+        document.getElementById('lang-sv-btn').addEventListener('click', () => setLanguage('sv'));
+
+        window.onload = () => {
+            setLanguage('en');
+        };
+
+    </script>
+</body>
+</html>
 
